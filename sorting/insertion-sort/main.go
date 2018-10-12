@@ -10,7 +10,7 @@ func main() {
 
 func incSort(a []int) []int {
 	o := a
-	for j := 1; j < len(o); j++ {
+	for j := 1; j < len(o); j++ { //
 		key := o[j]
 		i := j - 1
 		for i >= 0 && o[i] > key {
@@ -33,6 +33,6 @@ func decSort(a []int) []int {
 		}
 		o[i + 1] = key
 	}
-	 
+
 	return o
 }
