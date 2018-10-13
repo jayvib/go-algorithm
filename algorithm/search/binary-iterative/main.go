@@ -1,7 +1,30 @@
 package main
 
-func main() {
+import (
+	"fmt"
+	"math/rand"
+	"sort"
+	"time"
+)
 
+func main() {
+	s := generateSliceInt(10, func() int {
+		return rand.Intn(20)
+	})
+	sort.Ints(s) // the values must be sorted already
+	fmt.Printf("%v\n", s)
+	fmt.Println(len(s))
+
+	fmt.Println(BinarySearch(s, 1))
+}
+
+func generateSliceInt(size int, fn func() int) []int {
+	slice := make([]int, size, size)
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < size; i++ {
+		slice[i] = fn()
+	}
+	return slice
 }
 
 func BinarySearch(data []int, value int) bool {
