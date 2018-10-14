@@ -18,9 +18,9 @@ func printRepeating(data []int) {
 
 	size := len(data)
 	fmt.Println("Repeating elements are:")
-	for i := 0; i < size; i++ {
-		for j := i+1; j < size; j ++ {
-			if data[i] == data[j] {
+	for i := 0; i < size; i++ { // iterate each element...
+		for j := i+1; j < size; j ++ { // holding the value from index i.. iterate succedding element.
+			if data[i] == data[j] { // compare the value from index i to index j.
 				fmt.Print(" ", data[i])
 				break
 			}
@@ -44,7 +44,7 @@ func printRepeating2(data []int) {
 
 // Third Approach: using the hash-table
 func printRepeating3(data []int) {
-	s := set.New()
+	s := set.New() // create a storage to store the unique item.
 	size := len(data)
 	printedElements := set.New() // store unique element that has duplicate
 	fmt.Println("Repeating elements are:")
@@ -58,11 +58,32 @@ func printRepeating3(data []int) {
 	}
 	fmt.Println()
 }
+
+// Forth approach:
+// intrange is the maximum value of the input.
+func printRepeating4(data []int, intrange int) {
+	size := len(data)
+	count := make([]int, intrange)
+
+	fmt.Println("Repeating elements are:")
+	for i := 0; i < size; i++ {
+		if count[data[i]] == 1 {
+			fmt.Print(" ", data[i])
+		} else {
+			count[data[i]]++
+		}
+	}
+	fmt.Println()
+}
 func main() {
 	data := []int{2, 5, 3, 6, 8, 8, 2, 5, 10, 3, 2, 3, 1, 6, 7}
 	printRepeating(data)
 	printRepeating2(data)
 	printRepeating3(data)
+
+	sort.Ints(data)
+	printRepeating4(data, len(data))
 }
+
 
 
