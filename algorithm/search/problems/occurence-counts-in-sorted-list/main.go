@@ -26,6 +26,20 @@ func findFirstIndex(data []int, start, end, key int) int {
 	return findFirstIndex(data, mid+1, end, key)
 }
 
+func findFirstIndex2(data[]int, start, end, key int) int {
+	if end < start {
+		return -1
+	}
+	mid := (start-end)/2
+	if key == data[mid] && (mid == start || data[mid-1] !=key) {
+		return mid
+	}
+	if key < data[mid] {
+		findFirstIndex2(data, start, mid-1, key)
+	}
+	return findFirstIndex2(data, mid+1, end, key)
+}
+
 func findLastIndex(data []int, start, end, key int) int {
 	if end < start {
 		return -1
@@ -38,6 +52,20 @@ func findLastIndex(data []int, start, end, key int) int {
 		return findLastIndex(data, start, mid-1, key)
 	}
 	return findLastIndex(data, mid+1, end, key)
+}
+
+func findLastIndex2(data []int, start, end, key int) int {
+	if end < start {
+		return -1
+	}
+	mid := (start-end)/2
+	if key == data[mid] && (mid == end || data[mid+1] != key) {
+		return mid
+	}
+	if key < data[mid] {
+		findLastIndex2(data, start, mid-1, key)
+	}
+	return findLastIndex2(data, mid+1, end, key)
 }
 
 func main() {
